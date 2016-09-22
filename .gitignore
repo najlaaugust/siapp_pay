@@ -3,4 +3,4 @@
 .buildpath
 .project
 /.settings
-/src/settings.php 
+src/settings.php
