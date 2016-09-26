@@ -3,7 +3,7 @@
 
 $container = $app->getContainer();
 
-// view renderer
+// dbguy
 $container['dbguy'] = function ($c) {
     $settings = $c->get('settings')['dbguy'];
     return new dbguy($settings['serverName'],$settings['uid'],$settings['pwd'],$settings['database']);    

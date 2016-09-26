@@ -1,0 +1,38 @@
+[2016-09-26 11:06:21] Summer Institute Webservice.INFO: get specific app info - current_app_year [] {"uid":"366b183"}
+[2016-09-26 11:29:06] Summer Institute Webservice.INFO: get app info [] {"uid":"0f7b2d6"}
+[2016-09-26 11:30:50] Summer Institute Webservice.INFO: get app info [] {"uid":"19da3e0"}
+[2016-09-26 11:31:23] Summer Institute Webservice.INFO: get specific app info - current_app_year [] {"uid":"15ccc17"}
+[2016-09-26 11:32:14] Summer Institute Webservice.INFO: Check if exists in database [] {"uid":"65d1e7a"}
+[2016-09-26 11:33:03] Summer Institute Webservice.INFO: get registration info [] {"uid":"749154e"}
+[2016-09-26 11:34:11] Summer Institute Webservice.INFO: get registration info [] {"uid":"dc19173"}
+[2016-09-26 13:01:08] Summer Institute Webservice.INFO: get courses [] {"uid":"82d3693"}
+[2016-09-26 13:03:16] Summer Institute Webservice.INFO: get courses [] {"uid":"b85ae7f"}
+[2016-09-26 13:03:30] Summer Institute Webservice.INFO: get courses [] {"uid":"f07dbc1"}
+[2016-09-26 13:03:33] Summer Institute Webservice.INFO: get courses [] {"uid":"90fbf01"}
+[2016-09-26 13:07:29] Summer Institute Webservice.INFO: get courses [] {"uid":"d267494"}
+[2016-09-26 13:07:48] Summer Institute Webservice.INFO: get courses [] {"uid":"beb2409"}
+[2016-09-26 13:08:30] Summer Institute Webservice.INFO: get courses [] {"uid":"1c7bb58"}
+[2016-09-26 13:10:12] Summer Institute Webservice.INFO: get courses [] {"uid":"90b43be"}
+[2016-09-26 13:10:14] Summer Institute Webservice.INFO: get courses [] {"uid":"9aaadbd"}
+[2016-09-26 13:10:24] Summer Institute Webservice.INFO: get courses [] {"uid":"07b1657"}
+[2016-09-26 13:10:45] Summer Institute Webservice.INFO: get courses [] {"uid":"23266b3"}
+[2016-09-26 13:11:34] Summer Institute Webservice.INFO: get courses [] {"uid":"eb90b6e"}
+[2016-09-26 13:13:18] Summer Institute Webservice.INFO: get courses [] {"uid":"c37859f"}
+[2016-09-26 13:13:33] Summer Institute Webservice.INFO: get courses [] {"uid":"5db54cf"}
+[2016-09-26 13:14:29] Summer Institute Webservice.INFO: get courses [] {"uid":"8e36a06"}
+[2016-09-26 13:15:29] Summer Institute Webservice.INFO: get courses [] {"uid":"9b2f4ce"}
+[2016-09-26 13:19:20] Summer Institute Webservice.INFO: get courses [] {"uid":"deeb487"}
+[2016-09-26 13:19:55] Summer Institute Webservice.INFO: get courses [] {"uid":"d488aed"}
+[2016-09-26 13:20:16] Summer Institute Webservice.INFO: get courses [] {"uid":"2a47036"}
+[2016-09-26 13:20:22] Summer Institute Webservice.INFO: get courses [] {"uid":"eb49432"}
+[2016-09-26 13:20:28] Summer Institute Webservice.INFO: get courses [] {"uid":"e6976f4"}
+[2016-09-26 13:21:10] Summer Institute Webservice.INFO: get courses [] {"uid":"79a18f9"}
+[2016-09-26 13:22:33] Summer Institute Webservice.INFO: get courses [] {"uid":"e75bd04"}
+[2016-09-26 13:24:26] Summer Institute Webservice.INFO: get courses [] {"uid":"7deb31b"}
+[2016-09-26 13:25:27] Summer Institute Webservice.INFO: get courses [] {"uid":"b9be2b2"}
+[2016-09-26 13:28:51] Summer Institute Webservice.INFO: get courses [] {"uid":"9875ce3"}
+[2016-09-26 13:29:10] Summer Institute Webservice.INFO: get courses [] {"uid":"9f5ad6c"}
+[2016-09-26 13:30:03] Summer Institute Webservice.INFO: get courses [] {"uid":"be121e7"}
+[2016-09-26 13:30:32] Summer Institute Webservice.INFO: get courses [] {"uid":"853dfe5"}
+[2016-09-26 13:30:58] Summer Institute Webservice.INFO: get courses [] {"uid":"fd0580d"}
+[2016-09-26 13:32:41] Summer Institute Webservice.INFO: get courses [] {"uid":"1d2656c"}

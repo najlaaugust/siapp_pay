@@ -1,22 +1,77 @@
 <?php
 
-$app->get('/isvalid', function ($request, $response, $args) {
+$app->get('/courses', function ($request, $response, $args) {
+	$this->logger->addInfo("get courses");
+
+	$courseInfo = $this->dbguy->getCourseInfo();
+
+	if (empty($courseInfo)) {
+		die("died");
+	}
+
+	header("Content-Type: application/json");
+	echo json_encode($courseInfo);
+	exit;
+});
+
+
+$app->get('/currentappinfo', function ($request, $response, $args) {
+	$this->logger->addInfo("get app info");
+
+	$appInfo = $this->dbguy->getAppInfo();
+
+	if (empty($appInfo)) {
+		die("died");
+	}
+
+	header("Content-Type: application/json");
+	echo json_encode($appInfo);
+	exit;		
+});
+
+$app->get('/currentappinfo/{name}', function ($request, $response, $args) {
+	$name = $args['name'];
+	$this->logger->addInfo("get specific app info - " . $name);
+	
+	$appInfo = $this->dbguy->getAppInfo();
+	$appInfoValue = "";
+
+	foreach ( $appInfo as $key => $value ) {
+		if ($key == $name) {
+			$appInfoValue = $value;
+		}
+	}
+	
+	if (empty($appInfoValue)) {
+		die("died");
+	}
+	
+	header("Content-Type: application/json");
+	echo json_encode($appInfoValue);
+	exit;		
+});
+
+$app->get('/isvalid/{ConfirmNum}/{LastName}', function ($request, $response, $args) {
 	$this->logger->addInfo("Check if exists in database");
 	
-	$ConfirmNum ="HWAN-2016-0140";
-	$LastName ="HWANG";
+	//$ConfirmNum ="HWAN-2016-0140";
+	//$LastName ="HWANG";
+	$ConfirmNum = $args['ConfirmNum'];
+	$LastName = $args['LastName'];
 	
 	//query user info
 	$userInfo = $this->dbguy->getUserInfo($ConfirmNum, $LastName);
 	//print_r($userInfo);
 	
-	if (empty($userInfo))
-		echo "nothing";
-	else
-		echo "something";
-
-	$response->getBody()->write("yes");
-	return $response;
+	if (empty($userInfo)) {
+		header("Content-Type: application/json");
+		echo json_encode(array('notfound' => 'notfound'));
+		exit;
+	}	
+	
+	header("Content-Type: application/json");
+	echo json_encode($userInfo);
+	exit;	
 });
 
 $app->get('/reginfo/{OnlineID}', function ($request, $response, $args) {
@@ -28,13 +83,13 @@ $app->get('/reginfo/{OnlineID}', function ($request, $response, $args) {
 	//query reg info
 	$regInfo = $this->dbguy->getRegInfo($OnlineID);
 
-	if (empty($regInfo))
-		echo "nothing";
-		else
-				print_r($regInfo);
-
-	$response->getBody()->write("yes");
-	return $response;
+	if (empty($regInfo)) {
+		die("died");
+	}
+	
+	header("Content-Type: application/json");
+	echo json_encode($regInfo);
+	exit;	
 });
 
 

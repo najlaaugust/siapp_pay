@@ -18,6 +18,75 @@ class dbguy {
 		$this->connectionInfo = array("UID"=>$uid, "PWD"=>$pwd, "Database"=>$database);
 	}
 	
+	private function getDataset($theQuery)
+	{
+		$conn = sqlsrv_connect( $this->serverName, $this->connectionInfo);
+		if( $conn === false )
+		{
+			echo "Unable to connect.</br>";
+			die( print_r( sqlsrv_errors(), true));
+		}
+	
+		$stmt = sqlsrv_query( $conn, $theQuery);
+		if( $stmt === false )
+		{
+			echo "Error in executing query.</br>";
+			die( print_r( sqlsrv_errors(), true));
+		}
+	
+		$result_array = array();
+		
+		while( $obj = sqlsrv_fetch_object( $stmt)) {
+			$result_array[$obj->name] = $obj->value;
+		}		
+		
+		sqlsrv_free_stmt( $stmt);
+		sqlsrv_close( $conn);
+	
+		return $result_array;
+	}	
+	
+
+	private function executeStoredProcedure($theQuery)
+	{
+		$conn = sqlsrv_connect( $this->serverName, $this->connectionInfo);
+		if( $conn === false )
+		{
+			echo "Unable to connect.</br>";
+			die( print_r( sqlsrv_errors(), true));
+		}
+	
+		$stmt = sqlsrv_query($conn, $theQuery);
+		if( $stmt === false )
+		{
+			echo "Error in executing query.</br>";
+			die( print_r( sqlsrv_errors(), true));
+		}
+	
+		$result_array = array();
+		
+		while( $obj = sqlsrv_fetch_object( $stmt)) 
+		{
+			//echo "something";
+			$result_array[] = array(
+					"course_id" => $obj->course_id, 
+					"session_no" => $obj->session_no, 
+					"session_name" => $obj->session_name,
+					"schedule_time" => $obj->schedule_time,
+					"course_full_name" => $obj->course_full_name,
+					"credits" => $obj->credits,
+					"schedule_date" => $obj->schedule_date,
+					"instructor" => $obj->instructor,
+					"course_number" => $obj->course_number,
+			);
+		}
+		
+		sqlsrv_free_stmt( $stmt);
+		sqlsrv_close( $conn);
+		return $result_array;
+	}
+		
+	
 	private function getData($theQuery, array $params)
 	{
 		$conn = sqlsrv_connect( $this->serverName, $this->connectionInfo);
@@ -76,7 +145,20 @@ class dbguy {
 		sqlsrv_free_stmt( $reslt );
 		sqlsrv_close( $conn );
 	}	
+	
+	public function getCourseInfo() {
+		$tsql = "EXEC dbo.usp_get_course_schedule";	
+		$courses = $this->executeStoredProcedure($tsql);
+		return $courses;
+	}
 		
+		
+	public function getAppInfo() {
+		$tsql = "SELECT 	name, value from app_config";
+	
+		$row = $this->getDataset($tsql);
+		return $row;
+	}	
 	
 	public function getUserInfo($ConfirmNum, $LastName) {
 		 $tsql = "SELECT 	a.*,  s.state_name AS StateName, cn.country_name AS CountryName
