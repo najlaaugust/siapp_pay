@@ -3,18 +3,10 @@
 class dbguy {
 	
 	private $serverName;
-	//private $uid;
-	//private $pwd;
-	//private $database;
-	
 	private $connectionInfo;
 	
 	public function __construct($serverName,$uid,$pwd,$database) {
 		$this->serverName = $serverName;
-		//$this->uid = $uid;
-		//$this->pwd = $pwd;
-		//$this->database = $database;
-		
 		$this->connectionInfo = array("UID"=>$uid, "PWD"=>$pwd, "Database"=>$database);
 	}
 	
@@ -186,20 +178,21 @@ class dbguy {
         return $row;			        		
 	}
 	
+	public function getRegInfo_ForEmail($Confirm_Num) {
+		$tsql = "SELECT 	a.*, s.state_name AS StateName, cn.country_name AS CountryName,
+					    		(SELECT CAST([value] AS INT) FROM dbo.app_config WHERE [name] = 'current_app_year') AS CurrentYear
+					    FROM 	dbo.web_applications AS a LEFT OUTER JOIN us_states AS s ON
+					            UPPER(a.[state])	= s.state_id LEFT OUTER JOIN dbo.countries AS cn ON
+					           	UPPER(a.country)	= cn.country_id
+					    WHERE	Confirm_Num			= ?";
+		$row = $this->getData($tsql, array($Confirm_Num));
+		return $row;
+	}	
+	
 	public function insertWebPayFlowLog(array $data) {
 		
-		//$transaction_id = $data['transaction_id'];
-		//$result_code = $data['result_code'];
-		//$result_msg = $data['result_msg'];
-		//$transaction_amount = $data['transaction_amount'];
-		//$confirm_num = $data['confirm_num'];
-		//$transaction_date = $data['transaction_date'];		
-		
- 	 	//$tsql = "INSERT INTO web_payflow_log (transaction_id, result_code, result_msg, transaction_amount, confirm_num, transaction_date)
-		 //			VALUES ('$transaction_id', '$result_code', '$result_msg', '$transaction_amount', '$confirm_num', '$transaction_date')";
-
 		$tsql = "INSERT INTO web_payflow_log (transaction_id, result_code, result_msg, transaction_amount, confirm_num, transaction_date) 
-					VALUES (?, ?, ?, '?, ?, ?)";
+					VALUES (?, ?, ?, ?, ?, ?)";
 		
  	 	$this->insertData($tsql, $data);
 		 		
@@ -207,27 +200,6 @@ class dbguy {
 	
 	public function updateWebApplications(array $data) {
 
-		/*$CCNumber = $data['CCNumber'];
-		$CCType = $data['CCType'];
-		$CCDate = $data['CCDate'];
-		$CCName = $data['CCName'];
-		$CCEmail = $data['CCEmail'];
-		$CCPhone = $data['CCPhone'];
-		$CCAddress = $data['CCAddress'];
-		$PaymentStat = $data['PaymentStat'];
-		$Confirm_Num = $data['Confirm_Num'];
-		
-		
-		$tsql = "UPDATE 	web_applications SET					 	
-					CCNumber		= '$CCNumber',
-					CCType			= '$CCType',
-					CCDate			= '$CCDate',
-					CCName 			= '$CCName',
-					CCEmail 		= '$CCEmail',
-					CCPhone			= '$CCPhone',
-					CCAddress		= '$CCAddress',
-					PaymentStat		= '$PaymentStat'
-					WHERE 	Confirm_Num		= '$Confirm_Num'";*/
 		$tsql = "UPDATE 	web_applications SET
 					CCNumber		= ?,
 					CCType			= ?,
@@ -236,7 +208,7 @@ class dbguy {
 					CCEmail 		= ?,
 					CCPhone			= ?,
 					CCAddress		= ?,
-					PaymentStat		= ?'
+					PaymentStat		= ?
 					WHERE 	Confirm_Num		= ?";		
 		
 		$this->updateData($tsql, $data);
