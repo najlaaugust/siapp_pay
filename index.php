@@ -13,6 +13,7 @@ require __DIR__ . '/src/routes.php';
 
 require __DIR__ . '/src/dbguy.php';
 
+require __DIR__ . '/src/emailguy.php';
 /*
 spl_autoload_register(function ($classname) {
    require(__DIR__ . "/../models/" . $classname . ".php");

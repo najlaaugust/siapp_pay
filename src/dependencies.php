@@ -19,3 +19,9 @@ $container['logger'] = function($c) {
     return $logger;
 };
 
+//emailguy
+$container['emailguy'] = function($c) {
+	$settings = $c->get('settings')['emailguy'];
+	$emailguy = new emailguy($settings['server'],$settings['user'],$settings['pwd'],$settings['from']);
+	return $emailguy;
+};

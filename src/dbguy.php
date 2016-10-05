@@ -146,7 +146,7 @@ class dbguy {
 		
 		
 	public function getAppInfo() {
-		$tsql = "SELECT 	name, value from app_config";
+		$tsql = "SELECT 	name, value from app_config where name <> 'payment_url'";
 	
 		$row = $this->getDataset($tsql);
 		return $row;
